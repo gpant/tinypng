@@ -2,7 +2,7 @@
 
 Compress a PNG (or JPEG) file with the help of the [TinyPNG](https://tinypng.com/) service.
 
-[![Build Status](https://travis-ci.org/peterhellberg/tinypng.svg?branch=master)](https://travis-ci.org/peterhellberg/tinypng)
+[![Build Status](https://travis-ci.org/gpant/tinypng.svg?branch=master)](https://travis-ci.org/peterhellberg/tinypng)
 [![License MIT](https://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](https://github.com/peterhellberg/tinypng#license-mit)
 
 ## Installation
