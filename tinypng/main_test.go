@@ -13,7 +13,7 @@ func TestTinypngCommand(t *testing.T) {
 		Convey("outputs usage instructions if no args", func() {
 			out, _ := execGo("run", "main.go")
 
-			So(out, ShouldContainSubstring, "tinypng <input.png> [output.png]")
+			So(out, ShouldContainSubstring, "tinypng <input.png/jpg> [output.png/jpg]")
 		})
 
 		Convey("outputs error if unknown file", func() {
