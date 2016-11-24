@@ -26,7 +26,7 @@ function createRelease {
   rmdir $release_dir
 }
 
-RELEASES_DIR="/tmp/tinypng/releases/$1"
+RELEASES_DIR="/home/projects/tinypng/$1"
 RELEASE_BASE="tinypng-$1"
 
 # Architectures to create releases for

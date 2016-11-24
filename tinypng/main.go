@@ -2,26 +2,13 @@
 
 A TinyPNG client written in Go
 
-Compress a PNG file with the help of the TinyPNG service.
-
-Installation
-
-Just go get the command:
-
-    go get -u github.com/peterhellberg/tinypng/tinypng
+Compress a PNG or JPG file with the help of the TinyPNG service.
 
 Usage
-
-First you need to export TINYPNG_API_KEY=yourTinyPNGApiKey
 
 Then you can run the command:
 
     tinypng <input.png> [output.png]
-
-If only the input filename was specified, then the
-output filename will be 'tiny-<input.png>'
-
-You can also compress JPEG files.
 
 */
 package main
@@ -31,11 +18,14 @@ import (
 	"fmt"
 	"image/jpeg"
 	"image/png"
+	"log"
 	"os"
 	"path"
 	"runtime"
 
-	"github.com/peterhellberg/tinypng"
+	"github.com/BurntSushi/toml"
+	"github.com/gpant/tinypng"
+	"github.com/mitchellh/go-homedir"
 )
 
 func main() {
@@ -78,12 +68,36 @@ func main() {
 	res.SaveAs(outputFilename)
 }
 
+//Configuration
+
+// Info from config file
+type Config struct {
+	TINYPNG_API_KEY string
+}
+
+// Reads info from config file
+func ReadConfig(configfile string) Config {
+	_, err := os.Stat(configfile)
+	if err != nil {
+		log.Fatal("Config file is missing: ", configfile)
+	}
+
+	var config Config
+	if _, err := toml.DecodeFile(configfile, &config); err != nil {
+		log.Fatal(err)
+	}
+	//log.Print(config.Index)
+	return config
+}
+
 // Handle input
 
 func getFilenames(args []string) (string, string) {
 	// Make sure that we got one or two command line arguments
 	if len(args) < 2 || len(args) > 3 {
-		fatalGreen("Usage:", "tinypng <input.png> [output.png]")
+		getAPIKeyFromEnv()
+		fmt.Printf(green("TinyPNG") + " v0.0.4\n")
+		fatalGreen("Usage:", "tinypng <input.png/jpg> [output.png/jpg]")
 	}
 
 	if len(args) == 2 {
@@ -96,14 +110,25 @@ func getFilenames(args []string) (string, string) {
 }
 
 func getAPIKeyFromEnv() (string, error) {
-	apiKey := os.Getenv("TINYPNG_API_KEY")
+	var apiKey string
+	var configPath string
 
-	if apiKey == "" {
-		message := "You need to add " + green("TINYPNG_API_KEY") + " to your ENV."
-
-		return "", errors.New(message)
+	path, err := homedir.Dir()
+	if err == nil {
+		configPath = path + "/.tinypng/tinypng.config"
 	}
 
+	if _, err := os.Stat(configPath); err == nil {
+		var config = ReadConfig(configPath)
+		apiKey = config.TINYPNG_API_KEY
+	} else {
+		apiKey = os.Getenv("TINYPNG_API_KEY")
+
+		if apiKey == "" {
+			message := "No API key found. Please either create a config file or set an ENV variable " + green("TINYPNG_API_KEY") + " for it"
+			return "", errors.New(message)
+		}
+	}
 	return apiKey, nil
 }
 
