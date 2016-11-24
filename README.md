@@ -26,7 +26,8 @@ You can also compress JPEG files (via [TinyJPG](https://tinyjpg.com/)).
 
 ## License (MIT)
 
-Copyright (c) 2014 [Peter Hellberg](http://c7.se/)
+Original work Copyright (c) 2014 [Peter Hellberg](http://c7.se/)
+Modified work Copyright (c) 2016 [George Pantazis](https://eservices-greece.com)
 
 > Permission is hereby granted, free of charge, to any person obtaining
 > a copy of this software and associated documentation files (the
