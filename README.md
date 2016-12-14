@@ -2,8 +2,9 @@
 
 Compress a PNG (or JPEG) file with the help of the [TinyPNG](https://tinypng.com/) service.
 
-[![Build Status](https://travis-ci.org/gpant/tinypng.svg?branch=master)](https://travis-ci.org/peterhellberg/tinypng)
-[![License MIT](https://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](https://github.com/peterhellberg/tinypng#license-mit)
+[![Build Status](https://travis-ci.org/gpant/tinypng.svg?branch=master)](https://travis-ci.org/gpant/tinypng)
+[![GO Report](https://goreportcard.com/badge/github.com/gpant/tinypng)](https://goreportcard.com/badge/github.com/gpant/tinypng)
+[![License MIT](https://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](https://github.com/gpant/tinypng#license-mit)
 
 ## Installation
 
@@ -27,6 +28,7 @@ You can also compress JPEG files (via [TinyJPG](https://tinyjpg.com/)).
 ## License (MIT)
 
 Original work Copyright (c) 2014 [Peter Hellberg](http://c7.se/)
+
 Modified work Copyright (c) 2016 [George Pantazis](https://eservices-greece.com)
 
 > Permission is hereby granted, free of charge, to any person obtaining

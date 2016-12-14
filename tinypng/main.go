@@ -86,7 +86,6 @@ func ReadConfig(configfile string) Config {
 	if _, err := toml.DecodeFile(configfile, &config); err != nil {
 		log.Fatal(err)
 	}
-	//log.Print(config.Index)
 	return config
 }
 
